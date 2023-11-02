@@ -1,9 +1,11 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
   <title>Password Reset</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  
   <h1>Password Reset</h1>
   <form id="resetForm">
     <input type="email" id="email" placeholder="Email" required>
@@ -13,8 +15,8 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 
   <script>
-    const supabaseUrl = 'YOUR_SUPABASE_URL';
-    const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';
+    const supabaseUrl = 'https://goouehkgxwcbaumspuhy.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdvb3VlaGtneHdjYmF1bXNwdWh5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTg4NDY3NTAsImV4cCI6MjAxNDQyMjc1MH0.1uHjxOKYl8QAFB8ZKdVIGtXFeT-JgNRmNbXDu8mJI44';
 
     const supabase = createClient(supabaseUrl, supabaseKey);
 
@@ -28,6 +30,49 @@
           alert(error.message);
         } else {
           alert('Password reset email sent!');
+        }
+      } catch (error) {
+        alert(error.message);
+      }
+    });
+  </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Update Password</title>
+</head>
+<body>
+  <h1>Update Password</h1>
+  <form id="updatePasswordForm">
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="newPassword" placeholder="New Password" required>
+    <button type="submit">Update Password</button>
+  </form>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+  <script>
+   const supabaseUrl = 'https://goouehkgxwcbaumspuhy.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdvb3VlaGtneHdjYmF1bXNwdWh5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTg4NDY3NTAsImV4cCI6MjAxNDQyMjc1MH0.1uHjxOKYl8QAFB8ZKdVIGtXFeT-JgNRmNbXDu8mJI44';
+
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    document.getElementById('updatePasswordForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const newPassword = document.getElementById('newPassword').value;
+
+      try {
+        const { error } = await supabase.auth.api.updateUser(email, {
+          password: newPassword
+        });
+
+        if (error) {
+          alert(error.message);
+        } else {
+          alert('Password updated successfully!');
         }
       } catch (error) {
         alert(error.message);
