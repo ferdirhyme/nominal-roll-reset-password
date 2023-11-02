@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Password Reset</title>
+</head>
+<body>
+  <h1>Password Reset</h1>
+  <form id="resetForm">
+    <input type="email" id="email" placeholder="Email" required>
+    <button type="submit">Reset Password</button>
+  </form>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+  <script>
+    const supabaseUrl = 'YOUR_SUPABASE_URL';
+    const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';
+
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    document.getElementById('resetForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+
+      try {
+        const { data, error } = await supabase.auth.api.resetPasswordForEmail(email);
+        if (error) {
+          alert(error.message);
+        } else {
+          alert('Password reset email sent!');
+        }
+      } catch (error) {
+        alert(error.message);
+      }
+    });
+  </script>
+</body>
+</html>
