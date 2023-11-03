@@ -17,7 +17,7 @@
   <script>
    const supabaseUrl = 'https://goouehkgxwcbaumspuhy.supabase.co';
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdvb3VlaGtneHdjYmF1bXNwdWh5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTg4NDY3NTAsImV4cCI6MjAxNDQyMjc1MH0.1uHjxOKYl8QAFB8ZKdVIGtXFeT-JgNRmNbXDu8mJI44';
-
+    import { createClient } from '@supabase/supabase-js'
     const supabase = createClient(supabaseUrl, supabaseKey);
 
     document.getElementById('updatePasswordForm').addEventListener('submit', async (e) => {
